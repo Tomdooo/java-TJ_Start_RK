@@ -1,10 +1,10 @@
-package cz.uhk.tj_strat_rk;
+package cz.uhk.tj_start_rk;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TjStratRkApplicationTests {
+class TjStartRkApplicationTests {
 
     @Test
     void contextLoads() {

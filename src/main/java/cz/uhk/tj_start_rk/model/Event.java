@@ -1,10 +1,10 @@
-package cz.uhk.tj_strat_rk.model;
+package cz.uhk.tj_start_rk.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
 
-@Entity(name = "Events")
+@Entity(name = "events")
 public class Event {
     @Id
     @GeneratedValue

@@ -1,4 +1,4 @@
-package cz.uhk.tj_strat_rk.model;
+package cz.uhk.tj_start_rk.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.util.List;
 
-@Entity(name="Matches")
+@Entity(name="matches")
 public class Match {
     @Id
     @GeneratedValue

@@ -1,10 +1,10 @@
-package cz.uhk.tj_strat_rk.model;
+package cz.uhk.tj_start_rk.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "Members")
+@Entity(name = "members")
 public class Member {
     @Id
     @GeneratedValue
@@ -95,5 +95,19 @@ public class Member {
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    // METHODS
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", role='" + role + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", team=" + team +
+                ", trainings=" + trainings +
+                ", events=" + events +
+                '}';
     }
 }

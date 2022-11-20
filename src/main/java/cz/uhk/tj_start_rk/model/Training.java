@@ -1,4 +1,4 @@
-package cz.uhk.tj_strat_rk.model;
+package cz.uhk.tj_start_rk.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +7,7 @@ import javax.persistence.ManyToOne;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-@Entity(name="Trainings")
+@Entity(name="trainings")
 public class Training {
     @Id
     @GeneratedValue

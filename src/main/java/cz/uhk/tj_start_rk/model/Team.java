@@ -1,9 +1,9 @@
-package cz.uhk.tj_strat_rk.model;
+package cz.uhk.tj_start_rk.model;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name="teams")
 public class Team {
     @Id
     @GeneratedValue
