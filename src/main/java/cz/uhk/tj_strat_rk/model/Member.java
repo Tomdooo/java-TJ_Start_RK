@@ -30,6 +30,9 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Training> trainings = new ArrayList<>();
 
+    @OneToMany(mappedBy = "ministration")
+    private List<Event> events = new ArrayList<>();
+
     public int getId() {
         return id;
     }
