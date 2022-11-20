@@ -23,8 +23,8 @@ public class Training {
     @ManyToOne
     private Member member;
 
-//    @ManyToOne
-//    private Team team;
+    @ManyToOne
+    private Team team;
 
     // CONSTRUCTORS
     public Training(Date start, Date end, String header, String note, Member member) {
@@ -35,13 +35,13 @@ public class Training {
         this.member = member;
     }
 
-//    public Training(Date start, Date end, String header, String note, Team team) {
-//        this.start = start;
-//        this.end = end;
-//        this.header = header;
-//        this.note = note;
-//        this.team = team;
-//    }
+    public Training(Date start, Date end, String header, String note, Team team) {
+        this.start = start;
+        this.end = end;
+        this.header = header;
+        this.note = note;
+        this.team = team;
+    }
 
     public Training() {
 
@@ -76,15 +76,11 @@ public class Training {
         return member;
     }
 
-//    public Team getTeam() {
-//        return team;
-//    }
-
-    // SETTERS
-    public void setId(int id) {
-        this.id = id;
+    public Team getTeam() {
+        return team;
     }
 
+    // SETTERS
     public void setStart(Date start) {
         this.start = start;
     }
@@ -105,7 +101,7 @@ public class Training {
         this.member = member;
     }
 
-//    public void setTeam(Team team) {
-//        this.team = team;
-//    }
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 }
