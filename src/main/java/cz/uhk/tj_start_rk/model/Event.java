@@ -1,5 +1,7 @@
 package cz.uhk.tj_start_rk.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -15,6 +17,7 @@ public class Event {
     private Date end;
     private Timestamp timestamp;
     @ManyToOne
+    @JsonBackReference
     private Member ministration;
 
     // Constructors

@@ -1,5 +1,8 @@
 package cz.uhk.tj_start_rk.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +20,15 @@ public class Member {
     private String password;
 
     @ManyToOne
+    @JsonBackReference
     private Team team;
 
     @OneToMany(mappedBy = "member")
+    @JsonManagedReference
     private List<Training> trainings = new ArrayList<>();
 
     @OneToMany(mappedBy = "ministration")
+    @JsonManagedReference
     private List<Event> events = new ArrayList<>();
 
     //CONSTRUCTOR

@@ -1,5 +1,8 @@
 package cz.uhk.tj_start_rk.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,9 +15,11 @@ public class Team {
     private String name;
 
     @OneToMany(mappedBy = "team")
+    @JsonManagedReference
     private List<Member> members;
 
     @ManyToMany(mappedBy="teams")
+    @JsonBackReference
     private List<Match> matches;
 
     // CONSTRUCTORS

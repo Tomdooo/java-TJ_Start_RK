@@ -16,7 +16,7 @@ public class MemberController {
     }
 
     @GetMapping("/members")
-    private List<Member> getMembers() {
+    public List<Member> getMembers() {
         List<Member> members = memberRepository.findAll();
         System.out.println("members.toString()");
         return members;
