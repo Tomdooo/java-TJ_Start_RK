@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import cz.uhk.tj_start_rk.model.json_view.View;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -15,19 +16,24 @@ public class Event {
     @JsonView(View.Base.class)
     private int id;
     @JsonView(View.AllEvent.class)
+    @NotNull
     private String type;
     @JsonView(View.AllEvent.class)
     private String note;
     @JsonView(View.AllEvent.class)
+    @NotNull
     private Date start;
     @JsonView(View.AllEvent.class)
+    @NotNull
     private Date end;
     @JsonView(View.AllEvent.class)
+    @NotNull
     private Timestamp timestamp;
 
     @ManyToOne
 //    @JsonBackReference
     @JsonView(View.AllEvent.class)
+    @NotNull
     private Member ministration;
 
     // Constructors
