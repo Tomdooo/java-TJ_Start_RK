@@ -1,12 +1,11 @@
 package cz.uhk.tj_start_rk.controllers;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import cz.uhk.tj_start_rk.model.Team;
 import cz.uhk.tj_start_rk.model.Training;
 import cz.uhk.tj_start_rk.model.json_view.View;
 import cz.uhk.tj_start_rk.repositories.TrainingRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
 import java.util.List;
@@ -31,5 +30,10 @@ public class TrainingController {
     @GetMapping("/trainings/{id}")
     public Optional<Training> getTrainings(@PathVariable int id){
         return trainingRepository.findById(id);
+    }
+    @JsonView(View.AllTraining.class)
+    @PostMapping("/trainings")
+    public Training addTeam(@RequestBody Training training) {
+        return trainingRepository.save(training);
     }
 }
