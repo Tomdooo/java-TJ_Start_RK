@@ -1,7 +1,8 @@
 package cz.uhk.tj_start_rk.controllers;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import cz.uhk.tj_start_rk.model.Event;
-import cz.uhk.tj_start_rk.model.Team;
+import cz.uhk.tj_start_rk.model.json_view.View;
 import cz.uhk.tj_start_rk.repositories.EventRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +19,13 @@ public class EventController {
         this.eventRepository = eventRepository;
     }
 
+    @JsonView(View.AllEvent.class)
     @GetMapping("/events")
     public List<Event> getEvents() {
         return eventRepository.findAll();
     }
+
+    @JsonView(View.AllEvent.class)
     @GetMapping("/events/{id}")
     public Optional<Event> getTeams(@PathVariable int id){
         return eventRepository.findById(id);

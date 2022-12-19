@@ -1,6 +1,8 @@
 package cz.uhk.tj_start_rk.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonView;
+import cz.uhk.tj_start_rk.model.json_view.View;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -10,14 +12,22 @@ import java.util.Date;
 public class Event {
     @Id
     @GeneratedValue
+    @JsonView(View.Base.class)
     private int id;
+    @JsonView(View.AllEvent.class)
     private String type;
+    @JsonView(View.AllEvent.class)
     private String note;
+    @JsonView(View.AllEvent.class)
     private Date start;
+    @JsonView(View.AllEvent.class)
     private Date end;
+    @JsonView(View.AllEvent.class)
     private Timestamp timestamp;
+
     @ManyToOne
-    @JsonBackReference
+//    @JsonBackReference
+    @JsonView(View.AllEvent.class)
     private Member ministration;
 
     // Constructors

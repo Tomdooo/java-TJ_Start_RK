@@ -1,6 +1,8 @@
 package cz.uhk.tj_start_rk.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonView;
+import cz.uhk.tj_start_rk.model.json_view.View;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,23 +15,30 @@ import java.sql.Timestamp;
 public class Training {
     @Id
     @GeneratedValue
+    @JsonView(View.Base.class)
     private int id;
 
+    @JsonView(View.AllTraining.class)
     private Date start;
+    @JsonView(View.AllTraining.class)
     private Date end;
+    @JsonView(View.AllTraining.class)
     private Timestamp timestamp;
 
+    @JsonView(View.AllTraining.class)
     private String header;
+    @JsonView(View.AllTraining.class)
     private String note;
 
+    @JsonView(View.AllTraining.class)
     private int track;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonView(View.AllTraining.class)
     private Member member;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonView(View.AllTraining.class)
     private Team team;
 
     //Todo Timestamp and Header?

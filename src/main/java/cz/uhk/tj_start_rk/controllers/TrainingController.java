@@ -1,6 +1,8 @@
 package cz.uhk.tj_start_rk.controllers;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import cz.uhk.tj_start_rk.model.Training;
+import cz.uhk.tj_start_rk.model.json_view.View;
 import cz.uhk.tj_start_rk.repositories.TrainingRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,10 +21,13 @@ public class TrainingController {
         this.trainingRepository = trainingRepository;
     }
 
+    @JsonView(View.AllTraining.class)
     @GetMapping("/trainings")
     public List<Training> getTrainings(){
         return trainingRepository.findAll();
     }
+
+    @JsonView(View.AllTraining.class)
     @GetMapping("/trainings/{id}")
     public Optional<Training> getTrainings(@PathVariable int id){
         return trainingRepository.findById(id);

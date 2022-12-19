@@ -2,6 +2,8 @@ package cz.uhk.tj_start_rk.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
+import cz.uhk.tj_start_rk.model.json_view.View;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,16 +12,18 @@ import java.util.List;
 public class Team {
     @Id
     @GeneratedValue
+    @JsonView(View.Base.class)
     private int id;
 
+    @JsonView(View.AllTeam.class)
     private String name;
 
     @OneToMany(mappedBy = "team")
-    @JsonManagedReference
+    @JsonView(View.AllTeam.class)
     private List<Member> members;
 
     @ManyToMany(mappedBy="teams")
-    @JsonBackReference
+    @JsonView(View.AllTeam.class)
     private List<Match> matches;
 
     // CONSTRUCTORS
