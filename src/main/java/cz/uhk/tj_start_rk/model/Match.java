@@ -1,7 +1,5 @@
 package cz.uhk.tj_start_rk.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import cz.uhk.tj_start_rk.model.json_view.View;
 
@@ -9,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -20,15 +19,18 @@ public class Match {
     private int id;
 
     @JsonView(View.AllMatch.class)
+    @NotNull
     private String header;
     @JsonView(View.AllMatch.class)
     private String note;
 
     @JsonView(View.AllMatch.class)
+    @NotNull
     private Date start;
 
     @ManyToMany
     @JsonView(View.AllMatch.class)
+    @NotNull
     private List<Team> teams;
     //TODO není lepší dva týmy jako domácí a hosté než seznam týmů
 

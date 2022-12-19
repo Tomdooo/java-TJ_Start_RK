@@ -1,6 +1,5 @@
 package cz.uhk.tj_start_rk.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import cz.uhk.tj_start_rk.model.json_view.View;
 

@@ -1,13 +1,11 @@
 package cz.uhk.tj_start_rk.controllers;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import cz.uhk.tj_start_rk.model.Member;
 import cz.uhk.tj_start_rk.model.Team;
 import cz.uhk.tj_start_rk.model.json_view.View;
 import cz.uhk.tj_start_rk.repositories.TeamRepository;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +28,7 @@ public class TeamControllers {
     public Optional<Team> getTeams(@PathVariable int id){
         return teamRepository.findById(id);
     }
+
     @JsonView(View.AllTeam.class)
     @PostMapping("/teams")
     public Team addTeam(@RequestBody Team team) {

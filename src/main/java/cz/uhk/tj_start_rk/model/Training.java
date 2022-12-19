@@ -1,6 +1,5 @@
 package cz.uhk.tj_start_rk.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import cz.uhk.tj_start_rk.model.json_view.View;
 
@@ -8,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.sql.Timestamp;
 
@@ -19,18 +19,23 @@ public class Training {
     private int id;
 
     @JsonView(View.AllTraining.class)
+    @NotNull
     private Date start;
     @JsonView(View.AllTraining.class)
+    @NotNull
     private Date end;
     @JsonView(View.AllTraining.class)
+    @NotNull
     private Timestamp timestamp;
 
     @JsonView(View.AllTraining.class)
+    @NotNull
     private String header;
     @JsonView(View.AllTraining.class)
     private String note;
 
     @JsonView(View.AllTraining.class)
+    @NotNull
     private int track;
 
     @ManyToOne

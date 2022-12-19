@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import cz.uhk.tj_start_rk.model.json_view.View;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity(name="teams")
@@ -16,6 +17,7 @@ public class Team {
     private int id;
 
     @JsonView(View.AllTeam.class)
+    @NotNull
     private String name;
 
     @OneToMany(mappedBy = "team")

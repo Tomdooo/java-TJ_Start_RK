@@ -34,4 +34,10 @@ public class EventController {
     public Event addEvent(@RequestBody Event event) {
         return eventRepository.save(event);
     }
+
+//    @JsonView(View.AllEvent.class)
+//    @PutMapping("/events")
+//    public Event updateEvent(@RequestBody Event event) {
+//        return eventRepository.;
+//    }
 }

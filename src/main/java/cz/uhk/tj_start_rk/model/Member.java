@@ -1,11 +1,10 @@
 package cz.uhk.tj_start_rk.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import cz.uhk.tj_start_rk.model.json_view.View;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,13 +16,17 @@ public class Member {
     private int id;
 
     @JsonView(View.AllMember.class)
+    @NotNull
     private String role;
     @JsonView(View.AllMember.class)
+    @NotNull
     private String firstName;
     @JsonView(View.AllMember.class)
+    @NotNull
     private String lastName;
 
     @JsonView(View.AllMember.class)
+    @NotNull
     private String password;
 
     @ManyToOne
