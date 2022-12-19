@@ -17,6 +17,8 @@ public class Match {
 
     @ManyToMany
     private List<Team> teams;
+    //TODO není lepší dva týmy jako dopmací a hosté než seznam týmů
+    //TODO date
 
     // CONSTRUCTORS
     public Match(String header, String note, List<Team> teams) {

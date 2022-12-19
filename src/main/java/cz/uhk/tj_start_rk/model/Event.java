@@ -17,6 +17,7 @@ public class Event {
     @ManyToOne
     private Member ministration;
 
+    //TODO TIMESTAMP ADD?
     public Event(String type, String note, Date start, Date end, Member ministration) {
         this.type = type;
         this.note = note;

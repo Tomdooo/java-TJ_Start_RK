@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Timestamp;
 
 @Entity(name="trainings")
@@ -25,6 +25,8 @@ public class Training {
 
     @ManyToOne
     private Team team;
+
+    //Todo Timestamp and Header?
 
     // CONSTRUCTORS
     public Training(Date start, Date end, String header, String note, Member member) {

@@ -22,6 +22,10 @@ public class Team {
         this.name = name;
         this.members = members;
     }
+//TODO Nevim zda potřebujeme construktor s List<Member>
+    public Team(String name) {
+        this.name = name;
+    }
 
     public Team() {
     }
