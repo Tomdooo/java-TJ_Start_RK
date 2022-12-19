@@ -17,18 +17,21 @@ public class Event {
     @ManyToOne
     private Member ministration;
 
-    //TODO TIMESTAMP ADD?
+    // Constructors
     public Event(String type, String note, Date start, Date end, Member ministration) {
         this.type = type;
         this.note = note;
         this.start = start;
         this.end = end;
         this.ministration = ministration;
+        this.timestamp = new Timestamp(new Date().getTime());
     }
 
     public Event() {
+        this.timestamp = new Timestamp(new Date().getTime());
     }
 
+    //
     public int getId() {
         return id;
     }

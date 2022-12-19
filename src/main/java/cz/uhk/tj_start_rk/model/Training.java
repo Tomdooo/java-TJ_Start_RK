@@ -20,6 +20,8 @@ public class Training {
     private String header;
     private String note;
 
+    private int track;
+
     @ManyToOne
     private Member member;
 
@@ -29,24 +31,28 @@ public class Training {
     //Todo Timestamp and Header?
 
     // CONSTRUCTORS
-    public Training(Date start, Date end, String header, String note, Member member) {
+    public Training(Date start, Date end, String header, String note, int track, Member member) {
         this.start = start;
         this.end = end;
         this.header = header;
         this.note = note;
+        this.track = track;
         this.member = member;
+        this.timestamp = new Timestamp(new Date().getTime());
     }
 
-    public Training(Date start, Date end, String header, String note, Team team) {
+    public Training(Date start, Date end, String header, String note, int track, Team team) {
         this.start = start;
         this.end = end;
         this.header = header;
         this.note = note;
+        this.track = track;
         this.team = team;
+        this.timestamp = new Timestamp(new Date().getTime());
     }
 
     public Training() {
-
+        this.timestamp = new Timestamp(new Date().getTime());
     }
 
     // GETTERS
@@ -74,6 +80,10 @@ public class Training {
         return note;
     }
 
+    public int getTrack() {
+        return track;
+    }
+
     public Member getMember() {
         return member;
     }
@@ -97,6 +107,10 @@ public class Training {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public void setTrack(int track) {
+        this.track = track;
     }
 
     public void setMember(Member member) {

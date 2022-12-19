@@ -32,9 +32,9 @@ public class DBInit {
         em.persist(team2);
 
         //Add members
-        Member member1 = new Member("Admin","Václav", "Buřil",team1);
+        Member member1 = new Member("Admin","Václav", "Buřil", "Password123@",team1);
         em.persist(member1);
-        Member member2 = new Member("Hrac","Tomáš", "Němeček",team2);
+        Member member2 = new Member("Hrac","Tomáš", "Němeček", "Password123@",team2);
         em.persist(member2);
 
         //Add events
@@ -44,9 +44,10 @@ public class DBInit {
         em.persist(event2);
 
         //Add trainings
-        Training training1 = new Training(new Date(2023, Calendar.JANUARY,10,15, 0),  new Date(2023, Calendar.JANUARY,10,15, 45),"1.","",member1);
+        Training training1 = new Training(new Date(2023, Calendar.JANUARY,10,15, 0),  new Date(2023, Calendar.JANUARY,10,15, 45),"1.","",1,member1);
         em.persist(training1);
-        Training training2 = new Training(new Date(2023, Calendar.JANUARY,11,15, 0),  new Date(2023, Calendar.JANUARY,11,15, 45),"2.","",team1);
+        Training training2 = new Training(new Date(2023, Calendar.JANUARY,11,15, 0),  new Date(2023, Calendar.JANUARY,11,15, 45),"2.","",2,team1);
+
         em.persist(training2);
 
         //Matches

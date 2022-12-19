@@ -14,6 +14,8 @@ public class Member {
     private String firstName;
     private String lastName;
 
+    private String password;
+
     @ManyToOne
     private Team team;
 
@@ -24,16 +26,18 @@ public class Member {
     private List<Event> events = new ArrayList<>();
 
     //CONSTRUCTOR
-    public Member(String role, String firstName, String lastName) {
+    public Member(String role, String firstName, String lastName, String password) {
         this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.password = password;
     }
 
-    public Member(String role, String firstName, String lastName, Team team) {
+    public Member(String role, String firstName, String lastName, String password, Team team) {
         this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.password = password;
         this.team = team;
     }
 
