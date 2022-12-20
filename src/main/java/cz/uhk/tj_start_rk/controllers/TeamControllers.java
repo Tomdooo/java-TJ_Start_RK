@@ -34,4 +34,10 @@ public class TeamControllers {
     public Team addTeam(@RequestBody Team team) {
         return teamRepository.save(team);
     }
+
+    @JsonView(View.AllTeam.class)
+    @DeleteMapping("/teams/{id}")
+    public void deleteTeamById(@PathVariable int id){
+        teamRepository.deleteById(id);
+    }
 }

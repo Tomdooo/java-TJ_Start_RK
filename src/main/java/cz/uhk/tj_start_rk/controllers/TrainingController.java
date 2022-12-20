@@ -35,4 +35,10 @@ public class TrainingController {
     public Training addTeam(@RequestBody Training training) {
         return trainingRepository.save(training);
     }
+
+    @JsonView(View.AllTraining.class)
+    @DeleteMapping("/trainings/{id}")
+    public void deleteTrainingById(@PathVariable int id){
+       trainingRepository.deleteById(id);
+    }
 }

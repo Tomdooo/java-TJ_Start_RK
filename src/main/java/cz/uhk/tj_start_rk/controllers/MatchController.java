@@ -34,4 +34,10 @@ public class MatchController {
     public Match addMatch(@RequestBody Match match) {
         return matchRepository.save(match);
     }
+
+    @JsonView(View.AllMatch.class)
+    @DeleteMapping("/matches/{id}")
+    public void deleteMatchById(@PathVariable int id){
+        matchRepository.deleteById(id);
+    }
 }

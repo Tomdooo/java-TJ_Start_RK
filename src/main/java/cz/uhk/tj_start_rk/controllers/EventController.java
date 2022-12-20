@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import cz.uhk.tj_start_rk.model.Event;
 import cz.uhk.tj_start_rk.model.json_view.View;
 import cz.uhk.tj_start_rk.repositories.EventRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,9 +36,9 @@ public class EventController {
         return eventRepository.save(event);
     }
 
-//    @JsonView(View.AllEvent.class)
-//    @PutMapping("/events")
-//    public Event updateEvent(@RequestBody Event event) {
-//        return eventRepository.;
-//    }
+    @JsonView(View.AllEvent.class)
+    @DeleteMapping("/events/{id}")
+    public void deleteEventById(@PathVariable int id){
+        eventRepository.deleteById(id);
+    }
 }

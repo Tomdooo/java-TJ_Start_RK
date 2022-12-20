@@ -36,4 +36,10 @@ public class MemberController {
     public Member addMember(@RequestBody Member member) {
         return memberRepository.save(member);
     }
+
+    @JsonView(View.AllMember.class)
+    @DeleteMapping("/members/{id}")
+    public void deleteMemberById(@PathVariable int id){
+       memberRepository.deleteById(id);
+    }
 }
