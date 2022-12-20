@@ -32,9 +32,9 @@ public class DBInit {
         em.persist(team2);
 
         //Add members
-        Member member1 = new Member("Admin","Václav", "Buřil", "Password123@",team1);
+        Member member1 = new Member("Admin","Václav", "Buřil", "vasek", "Password123@",team1);
         em.persist(member1);
-        Member member2 = new Member("Hrac","Tomáš", "Němeček", "Password123@",team2);
+        Member member2 = new Member("Hrac","Tomáš", "Němeček", "tomas", "Password123@",team2);
         em.persist(member2);
 
         //Add events

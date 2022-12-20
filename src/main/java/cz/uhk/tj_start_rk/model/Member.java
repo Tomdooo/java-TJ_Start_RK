@@ -27,6 +27,9 @@ public class Member {
 
     @JsonView(View.AllMember.class)
     @NotNull
+    private String username;
+    @JsonView(View.AllMember.class)
+    @NotNull
     private String password;
 
     @ManyToOne(cascade = CascadeType.DETACH)
@@ -42,17 +45,19 @@ public class Member {
     private List<Event> events = new ArrayList<>();
 
     //CONSTRUCTOR
-    public Member(String role, String firstName, String lastName, String password) {
+    public Member(String role, String firstName, String lastName, String username, String password) {
         this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.username = username;
         this.password = password;
     }
 
-    public Member(String role, String firstName, String lastName, String password, Team team) {
+    public Member(String role, String firstName, String lastName, String username, String password, Team team) {
         this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.username = username;
         this.password = password;
         this.team = team;
     }
@@ -91,6 +96,14 @@ public class Member {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
