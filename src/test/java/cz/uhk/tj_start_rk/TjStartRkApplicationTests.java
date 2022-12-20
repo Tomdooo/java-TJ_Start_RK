@@ -3,6 +3,7 @@ package cz.uhk.tj_start_rk;
 import cz.uhk.tj_start_rk.model.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,7 +17,7 @@ import java.util.List;
 class TjStartRkApplicationTests {
 
     @Test
-    void contextLoads() {
+    void contextLoads(PasswordEncoder passwordEncoder) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("tj_start");
         EntityManager em =emf.createEntityManager();
         em.getTransaction().begin();
@@ -28,9 +29,9 @@ class TjStartRkApplicationTests {
         em.persist(team2);
 
         //Add members
-        Member member1 = new Member("Admin","Václav", "Buřil", "vasek", "Password123@",team1);
+        Member member1 = new Member("Admin","Václav", "Buřil", "vasek", passwordEncoder.encode("Password123@"),team1);
         em.persist(member1);
-        Member member2 = new Member("Hrac","Tomáš", "Němeček", "tomas", "Password123@",team2);
+        Member member2 = new Member("Hrac","Tomáš", "Němeček", "tomas", passwordEncoder.encode("Password123@"),team2);
         em.persist(member2);
 
         //Add events
