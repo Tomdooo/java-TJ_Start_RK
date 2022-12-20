@@ -29,15 +29,15 @@ public class Member {
     @NotNull
     private String password;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JsonView(View.AllMember.class)
     private Team team;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", cascade = CascadeType.DETACH)
     @JsonView(View.AllMember.class)
     private List<Training> trainings = new ArrayList<>();
 
-    @OneToMany(mappedBy = "ministration")
+    @OneToMany(mappedBy = "ministration", cascade = CascadeType.DETACH)
     @JsonView(View.AllMember.class)
     private List<Event> events = new ArrayList<>();
 
@@ -93,6 +93,14 @@ public class Member {
         this.lastName = lastName;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public List<Training> getTrainings() {
         return trainings;
     }
@@ -115,6 +123,16 @@ public class Member {
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    // UPDATE
+    public void update(Member member) {
+        this.role = member.getRole();
+        this.firstName = member.getFirstName();
+        this.lastName = member.getLastName();   // TODO password?
+        this.trainings = member.getTrainings();
+        this.events = member.getEvents();
+        this.team = member.getTeam();
     }
 
     // METHODS

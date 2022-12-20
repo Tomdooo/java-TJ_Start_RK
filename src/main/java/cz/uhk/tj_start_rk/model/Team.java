@@ -20,11 +20,11 @@ public class Team {
     @NotNull
     private String name;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", cascade = CascadeType.DETACH)
     @JsonView(View.AllTeam.class)
     private List<Member> members;
 
-    @ManyToMany(mappedBy="teams")
+    @ManyToMany(mappedBy="teams", cascade = CascadeType.DETACH)
     @JsonView(View.AllTeam.class)
     private List<Match> matches;
 
@@ -69,5 +69,12 @@ public class Team {
 
     public void setMatches(List<Match> matches) {
         this.matches = matches;
+    }
+
+    // UPDATE
+    public void update(Team team) {
+        this.name = team.getName();
+        this.members = team.getMembers();
+        this.matches = team.getMatches();
     }
 }

@@ -29,10 +29,8 @@ public class Event {
     @NotNull
     private Timestamp timestamp;
 
-    @ManyToOne
-//    @JsonBackReference
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JsonView(View.AllEvent.class)
-    @NotNull
     private Member ministration;
 
     // Constructors
@@ -104,5 +102,14 @@ public class Event {
 
     public void setMinistration(Member ministration) {
         this.ministration = ministration;
+    }
+
+    // UPDATE
+    public void update(Event event) {
+        this.type = event.getType();
+        this.note = event.getNote();
+        this.start = event.getStart();
+        this.end = event.getEnd();
+        this.ministration = event.getMinistration();
     }
 }

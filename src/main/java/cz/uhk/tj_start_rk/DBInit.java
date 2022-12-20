@@ -59,6 +59,7 @@ public class DBInit {
         match1.setTeams(teams);
         match1.setHeader("aaaaaaaaaaa");
         match1.setNote("bbbbbbbbb");
+        match1.setStart(new Date());
         em.persist(match1);
 
         em.getTransaction().commit();

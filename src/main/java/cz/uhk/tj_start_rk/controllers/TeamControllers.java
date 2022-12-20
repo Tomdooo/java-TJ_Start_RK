@@ -36,6 +36,16 @@ public class TeamControllers {
     }
 
     @JsonView(View.AllTeam.class)
+    @PutMapping("/teams")
+    public Team updateTeam(@RequestBody Team team) {
+        Team update = teamRepository.getReferenceById(team.getId());
+
+        update.update(team);
+
+        return teamRepository.save(update);
+    }
+
+    @JsonView(View.AllTeam.class)
     @DeleteMapping("/teams/{id}")
     public void deleteTeamById(@PathVariable int id){
         teamRepository.deleteById(id);

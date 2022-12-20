@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 import cz.uhk.tj_start_rk.model.Event;
 import cz.uhk.tj_start_rk.model.json_view.View;
 import cz.uhk.tj_start_rk.repositories.EventRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 public class EventController {
-    private EventRepository eventRepository;
+    private final EventRepository eventRepository;
 
     public EventController(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
@@ -33,6 +32,16 @@ public class EventController {
     @JsonView(View.AllEvent.class)
     @PostMapping("/events")
     public Event addEvent(@RequestBody Event event) {
+        return eventRepository.save(event);
+    }
+
+    @JsonView(View.AllEvent.class)
+    @PutMapping("/events")
+    public Event updateEvent(@RequestBody Event event) {
+        Event update = eventRepository.getReferenceById(event.getId());
+
+        update.update(event);
+
         return eventRepository.save(event);
     }
 

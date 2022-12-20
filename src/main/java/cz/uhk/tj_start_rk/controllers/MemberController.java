@@ -1,6 +1,7 @@
 package cz.uhk.tj_start_rk.controllers;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import cz.uhk.tj_start_rk.model.Event;
 import cz.uhk.tj_start_rk.model.Member;
 import cz.uhk.tj_start_rk.model.json_view.View;
 import cz.uhk.tj_start_rk.repositories.MemberRepository;
@@ -11,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 public class MemberController {
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
     public MemberController(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
@@ -34,6 +35,16 @@ public class MemberController {
     @JsonView(View.AllMember.class)
     @PostMapping("/members")
     public Member addMember(@RequestBody Member member) {
+        return memberRepository.save(member);
+    }
+
+    @JsonView(View.AllMember.class)
+    @PutMapping("/members")
+    public Member updateMember(@RequestBody Member member) {
+        Member update = memberRepository.getReferenceById(member.getId());
+
+        update.update(member);
+
         return memberRepository.save(member);
     }
 

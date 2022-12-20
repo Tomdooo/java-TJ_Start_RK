@@ -32,8 +32,18 @@ public class TrainingController {
 
     @JsonView(View.AllTraining.class)
     @PostMapping("/trainings")
-    public Training addTeam(@RequestBody Training training) {
+    public Training addTraining(@RequestBody Training training) {
         return trainingRepository.save(training);
+    }
+
+    @JsonView(View.AllTraining.class)
+    @PutMapping("/trainings")
+    public Training updateTraining(@RequestBody Training training) {
+        Training update = trainingRepository.getReferenceById(training.getId());
+
+        update.update(training);
+
+        return trainingRepository.save(update);
     }
 
     @JsonView(View.AllTraining.class)

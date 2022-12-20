@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 public class MatchController {
-    private MatchRepository matchRepository;
+    private final MatchRepository matchRepository;
 
     public MatchController(MatchRepository matchRepository) {
         this.matchRepository = matchRepository;
@@ -33,6 +33,16 @@ public class MatchController {
     @PostMapping("/matches")
     public Match addMatch(@RequestBody Match match) {
         return matchRepository.save(match);
+    }
+
+    @JsonView(View.AllMatch.class)
+    @PutMapping("/matches")
+    public Match updateMatch(@RequestBody Match match) {
+        Match update = matchRepository.getReferenceById(match.getId());
+
+        update.update(match);
+
+        return matchRepository.save(update);
     }
 
     @JsonView(View.AllMatch.class)

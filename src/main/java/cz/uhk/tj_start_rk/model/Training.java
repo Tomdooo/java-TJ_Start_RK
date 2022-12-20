@@ -3,10 +3,7 @@ package cz.uhk.tj_start_rk.model;
 import com.fasterxml.jackson.annotation.JsonView;
 import cz.uhk.tj_start_rk.model.json_view.View;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.sql.Timestamp;
@@ -38,11 +35,11 @@ public class Training {
     @NotNull
     private int track;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JsonView(View.AllTraining.class)
     private Member member;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JsonView(View.AllTraining.class)
     private Team team;
 
@@ -137,5 +134,16 @@ public class Training {
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    // UPDATE
+    public void update(Training training) {
+        this.start = training.getStart();
+        this.end = training.getEnd();
+        this.header = training.getHeader();
+        this.note = training.getNote();
+        this.track = training.getTrack();
+        this.member = training.getMember();
+        this.team = training.getTeam();
     }
 }
