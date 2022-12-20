@@ -10,23 +10,26 @@ import cz.uhk.tj_start_rk.service.JpaUserDetailService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.JwtEncoder;
-import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
-import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.oauth2.jwt.*;
 import org.springframework.security.web.SecurityFilterChain;
 
 
-@EnableWebSecurity
+
 @Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(
+        prePostEnabled = true,
+        securedEnabled = true,
+        jsr250Enabled = true
+)
 // https://www.youtube.com/watch?v=KYNR5js2cXE
 // https://www.youtube.com/watch?v=awcCiqBO36E
 public class SecurityConfiguration {
@@ -38,28 +41,24 @@ public class SecurityConfiguration {
         this.jpaUserDetailService = jpaUserDetailService;
     }
 
-//    @Bean
-//    public InMemoryUserDetailsManager user() {  // Default user
-//        return new InMemoryUserDetailsManager(
-//                User.withUsername("admin")
-//                    .password("{noop}admin")
-//                    .authorities("read")
-//                    .build()
-//        );
-//    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(csrf -> csrf.disable())
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeRequests(
                         auth -> auth
-                                .anyRequest().authenticated()
+                                    .anyRequest().authenticated()
+
                 )
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+//                .oauth2ResourceServer()
+//                .jwt()
+//                .jwtAuthenticationConverter()
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))   // Disable session (not needed here for this REST API)
                 .headers(headers -> headers.frameOptions().sameOrigin())
                 .userDetailsService(jpaUserDetailService)
+                .formLogin().and()
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }

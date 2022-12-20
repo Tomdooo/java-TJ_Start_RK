@@ -15,20 +15,20 @@ public class Member {
     @JsonView(View.Base.class)
     private int id;
 
-    @JsonView(View.AllMember.class)
+    @JsonView(View.BasicMember.class)
     @NotNull
     private String role;
-    @JsonView(View.AllMember.class)
+    @JsonView(View.BasicMember.class)
     @NotNull
     private String firstName;
-    @JsonView(View.AllMember.class)
+    @JsonView(View.BasicMember.class)
     @NotNull
     private String lastName;
 
-    @JsonView(View.AllMember.class)
+    @JsonView(View.BasicMember.class)
     @NotNull
     private String username;
-    @JsonView(View.AllMember.class)
+    @JsonView(View.AllMemberWithPassword.class)
     @NotNull
     private String password;
 
@@ -143,6 +143,7 @@ public class Member {
         this.role = member.getRole();
         this.firstName = member.getFirstName();
         this.lastName = member.getLastName();   // TODO password?
+        this.username = member.getUsername();
         this.trainings = member.getTrainings();
         this.events = member.getEvents();
         this.team = member.getTeam();

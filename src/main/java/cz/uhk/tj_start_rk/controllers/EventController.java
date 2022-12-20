@@ -42,7 +42,7 @@ public class EventController {
 
         update.update(event);
 
-        return eventRepository.save(event);
+        return eventRepository.save(update);
     }
 
     @JsonView(View.AllEvent.class)

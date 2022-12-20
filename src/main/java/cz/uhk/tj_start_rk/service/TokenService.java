@@ -1,5 +1,6 @@
 package cz.uhk.tj_start_rk.service;
 
+import cz.uhk.tj_start_rk.model.Member;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
@@ -19,12 +20,16 @@ public class TokenService {
         this.encoder = encoder;
     }
 
-    public String generateToken(Authentication authentication) {
+    public String generateToken(Authentication authentication, Member member) {
         Instant now = Instant.now();
         String scope = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(" "));
         JwtClaimsSet claims = JwtClaimsSet.builder()
+                .claim("id", member.getId())
+                .claim("username", member.getUsername())
+                .claim("firstName", member.getFirstName())
+                .claim("lastName", member.getLastName())
                 .issuer("self")
                 .issuedAt(now)
                 .expiresAt(now.plus(1, ChronoUnit.HOURS))

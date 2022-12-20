@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 
 public class SecurityUser implements UserDetails {
     private final Member member;
@@ -16,9 +17,13 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.stream(member.getRole().split(","))
-                     .map(SimpleGrantedAuthority::new)
-                     .toList();
+//        System.out.println(Arrays.stream(member.getRole().split(","))
+//                .map(SimpleGrantedAuthority::new)
+//                .toList());
+//        return Arrays.stream(member.getRole().split(","))
+//                     .map(SimpleGrantedAuthority::new)
+//                     .toList();
+        return Collections.singleton(new SimpleGrantedAuthority(member.getRole()));
     }
 
     @Override

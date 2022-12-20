@@ -32,6 +32,8 @@ public class DBInit {
                                         TeamRepository teams,
                                         TrainingRepository trainings) {
         return args -> {
+            if (members.findByUsername("tomas").isPresent()) return;
+
             //Add teams
             Team team1 = new Team("aaaa");
             teams.save(team1);
@@ -39,9 +41,9 @@ public class DBInit {
             teams.save(team2);
 
             //Add members
-            Member member1 = new Member("Admin","Václav", "Buřil", "vasek", passwordEncoder.encode("Password123@"),team1);
+            Member member1 = new Member("ADMIN","Václav", "Buřil", "vasek", passwordEncoder.encode("Password123@"),team1);
             members.save(member1);
-            Member member2 = new Member("Hrac","Tomáš", "Němeček", "tomas", passwordEncoder.encode("Password123@"),team2);
+            Member member2 = new Member("USER","Tomáš", "Němeček", "tomas", passwordEncoder.encode("Password123@"),team2);
             members.save(member2);
 
             //Add events
