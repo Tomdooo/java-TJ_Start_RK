@@ -7,10 +7,10 @@ import cz.uhk.tj_start_rk.repositories.TeamRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 public class TeamControllers {
     private TeamRepository teamRepository;
