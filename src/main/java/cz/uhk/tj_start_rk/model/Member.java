@@ -26,7 +26,8 @@ public class Member {
     private String lastName;
 
     @JsonView(View.BasicMember.class)
-    @NotNull
+    @Column(unique=true, nullable = false, length = 64)
+//    @NotNull
     private String username;
     @JsonView(View.AllMemberWithPassword.class)
     @NotNull

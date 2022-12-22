@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 import cz.uhk.tj_start_rk.model.Team;
 import cz.uhk.tj_start_rk.model.json_view.View;
 import cz.uhk.tj_start_rk.repositories.TeamRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,12 +32,14 @@ public class TeamControllers {
     }
 
     @JsonView(View.AllTeam.class)
+    @PreAuthorize("hasAnyAuthority({'ADMIN', 'MODERATOR'})")
     @PostMapping("/teams")
     public Team addTeam(@RequestBody Team team) {
         return teamRepository.save(team);
     }
 
     @JsonView(View.AllTeam.class)
+    @PreAuthorize("hasAnyAuthority({'ADMIN', 'MODERATOR'})")
     @PutMapping("/teams")
     public Team updateTeam(@RequestBody Team team) {
         Team update = teamRepository.getReferenceById(team.getId());
@@ -46,6 +50,7 @@ public class TeamControllers {
     }
 
     @JsonView(View.AllTeam.class)
+    @PreAuthorize("hasAnyAuthority({'ADMIN', 'MODERATOR'})")
     @DeleteMapping("/teams/{id}")
     public void deleteTeamById(@PathVariable int id){
         teamRepository.deleteById(id);

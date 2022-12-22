@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+// TODO upravovat jen svoje tréninky
 @RestController
 public class TrainingController {
 

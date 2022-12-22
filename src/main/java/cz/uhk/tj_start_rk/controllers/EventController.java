@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 import cz.uhk.tj_start_rk.model.Event;
 import cz.uhk.tj_start_rk.model.json_view.View;
 import cz.uhk.tj_start_rk.repositories.EventRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,12 +32,14 @@ public class EventController {
     }
 
     @JsonView(View.AllEvent.class)
+    @PreAuthorize("hasAnyAuthority({'ADMIN', 'MODERATOR'})")
     @PostMapping("/events")
     public Event addEvent(@RequestBody Event event) {
         return eventRepository.save(event);
     }
 
     @JsonView(View.AllEvent.class)
+    @PreAuthorize("hasAnyAuthority({'ADMIN', 'MODERATOR'})")
     @PutMapping("/events")
     public Event updateEvent(@RequestBody Event event) {
         Event update = eventRepository.getReferenceById(event.getId());
@@ -46,6 +50,7 @@ public class EventController {
     }
 
     @JsonView(View.AllEvent.class)
+    @PreAuthorize("hasAnyAuthority({'ADMIN', 'MODERATOR'})")
     @DeleteMapping("/events/{id}")
     public void deleteEventById(@PathVariable int id){
         eventRepository.deleteById(id);

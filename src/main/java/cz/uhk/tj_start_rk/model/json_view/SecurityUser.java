@@ -1,5 +1,6 @@
-package cz.uhk.tj_start_rk.model;
+package cz.uhk.tj_start_rk.model.json_view;
 
+import cz.uhk.tj_start_rk.model.Member;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
