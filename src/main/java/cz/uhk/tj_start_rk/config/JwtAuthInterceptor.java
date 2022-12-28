@@ -43,27 +43,13 @@ public class JwtAuthInterceptor implements HandlerInterceptor {
                 System.out.println("-----");
                 System.out.println(SecurityContextHolder.getContext().getAuthentication());
                 SecurityContextHolder.getContext().setAuthentication(
-                    new JwtAuthenticationToken(jwtDecoder.decode(jwt.getValue()))
+                        new JwtAuthenticationToken(jwtDecoder.decode(jwt.getValue()))
                 );
                 System.out.println(SecurityContextHolder.getContext().getAuthentication());
                 System.out.println("-----");
             }
 
-//            System.out.println(Jwt.withTokenValue(jwt.getValue()).build());
-//                SecurityContextHolder.getContext().setAuthentication(
-//                        new JwtAuthenticationToken(Jwt.withTokenValue(jwt.getValue()).build())
-//                );
-
         }
-
-//        System.out.println(SecurityContextHolder.getContext().getAuthentication());
-//
-////        if (jwt != null) {
-////            request.getHeader() = request.getHeader("Authorization").replaceAll(".*", "Bearer " + jwt.getValue());
-////            System.out.println(request.getHeader("Authorization"));
-////        }
-
-//        return HandlerInterceptor.super.preHandle(request, response, handler);
         return true;
     }
 }

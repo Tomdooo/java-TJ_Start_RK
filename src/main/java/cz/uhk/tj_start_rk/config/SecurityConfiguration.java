@@ -24,6 +24,10 @@ import org.springframework.security.oauth2.jwt.*;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFilter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Collection;
 
@@ -59,6 +63,7 @@ public class SecurityConfiguration {
                                     .anyRequest().authenticated()
 
                 )
+//                .addFilterBefore(new CookieAuthFilter(jwtDecoder()), BasicAuthenticationFilter.class)
 //                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .oauth2ResourceServer(oauth2 -> oauth2
                                                     .jwt()
@@ -69,6 +74,17 @@ public class SecurityConfiguration {
                 .formLogin().and()
                 .httpBasic(Customizer.withDefaults())
                 .build();
+    }
+
+    // CORS configure
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("http://localhost:5173").allowCredentials(true);
+            }
+        };
     }
 
     // JWT encoder/decoder
