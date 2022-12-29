@@ -62,7 +62,7 @@ public class AuthController {
 
             // httpOnly cookie
             Cookie httpOnlyCookie = new Cookie("jwt", token);
-            httpOnlyCookie.setMaxAge(3600000);
+            httpOnlyCookie.setMaxAge(86400);
             httpOnlyCookie.setHttpOnly(true);
             httpOnlyCookie.setDomain(cookieDomain);
             httpOnlyCookie.setPath("/");
@@ -70,7 +70,7 @@ public class AuthController {
 
             // cookie
             Cookie cookie = new Cookie("jwt_payload", token.split("\\.")[1]);
-            cookie.setMaxAge(3600000);
+            cookie.setMaxAge(86400);
             cookie.setHttpOnly(false);
             cookie.setDomain(cookieDomain);
             httpOnlyCookie.setPath("/");

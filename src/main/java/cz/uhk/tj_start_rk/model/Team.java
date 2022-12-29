@@ -16,7 +16,7 @@ public class Team {
     @JsonView(View.Base.class)
     private int id;
 
-    @JsonView(View.AllTeam.class)
+    @JsonView(View.Base.class)
     @NotNull
     private String name;
 

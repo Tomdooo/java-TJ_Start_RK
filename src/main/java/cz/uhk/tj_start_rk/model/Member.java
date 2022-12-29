@@ -18,10 +18,10 @@ public class Member {
     @JsonView(View.BasicMember.class)
     @NotNull
     private String role;
-    @JsonView(View.BasicMember.class)
+    @JsonView(View.Base.class)
     @NotNull
     private String firstName;
-    @JsonView(View.BasicMember.class)
+    @JsonView(View.Base.class)
     @NotNull
     private String lastName;
 
