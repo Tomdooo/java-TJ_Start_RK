@@ -37,7 +37,7 @@ public class Member {
     @JsonView(View.AllMember.class)
     private Team team;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.DETACH, orphanRemoval = true)
+    @OneToMany(mappedBy = "member",  cascade = CascadeType.DETACH)
     @JsonView(View.AllMember.class)
     private List<Training> trainings = new ArrayList<>();
 
@@ -49,6 +49,9 @@ public class Member {
     private void preRemove(){
         for (Event e : events){
             e.setMinistration(null);
+        }
+        for (Training t : trainings){
+            t.setMember(null);
         }
     }
 

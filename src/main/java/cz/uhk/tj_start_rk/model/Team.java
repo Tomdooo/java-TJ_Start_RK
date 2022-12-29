@@ -30,7 +30,7 @@ public class Team {
     @JsonView(View.AllTeam.class)
     private List<Match> awayMatches;
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.DETACH, orphanRemoval = true)
+    @OneToMany(mappedBy = "team", cascade = CascadeType.DETACH)
     @JsonView(View.AllTeam.class)
     private List<Training> trainings;
 
@@ -44,6 +44,9 @@ public class Team {
         }
         for (Match m:awayMatches){
             m.setAwayTeam(null);
+        }
+        for (Training t: trainings){
+            t.setTeam(null);
         }
     }
 
