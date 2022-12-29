@@ -49,14 +49,12 @@ class TjStartRkApplicationTests {
 
         //Matches
         Match match1 = new Match();
-        List<Team> teams = new ArrayList<>();
-        teams.add(team1);
-        teams.add(team2);
-        match1.setTeams(teams);
+
+        match1.setHomeTeam(team1);
+        match1.setAwayTeam(team2);
         match1.setHeader("aaaaaaaaaaa");
         match1.setNote("bbbbbbbbb");
         match1.setStart(new Date());
-        em.persist(match1);
 
         em.getTransaction().commit();
         em.close();

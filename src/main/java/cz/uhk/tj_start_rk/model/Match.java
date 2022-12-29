@@ -6,7 +6,6 @@ import cz.uhk.tj_start_rk.model.json_view.View;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.List;
 
 @Entity(name="matches")
 public class Match {
@@ -25,17 +24,20 @@ public class Match {
     @NotNull
     private Date start;
 
-    @ManyToMany(cascade = CascadeType.DETACH)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JsonView(View.AllMatch.class)
-//    @NotNull
-    private List<Team> teams;
-    //TODO není lepší dva týmy jako domácí a hosté než seznam týmů
+    private Team homeTeam;
+
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JsonView(View.AllMatch.class)
+    private Team awayTeam;
 
     // CONSTRUCTORS
-    public Match(String header, String note, List<Team> teams, Date start) {
+    public Match(String header, String note, Team homeTeam, Team awayTeam, Date start) {
         this.header = header;
         this.note = note;
-        this.teams = teams;
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
         this.start = start;
     }
 
@@ -56,8 +58,12 @@ public class Match {
         return note;
     }
 
-    public List<Team> getTeams() {
-        return teams;
+    public Team getHomeTeam() {
+        return homeTeam;
+    }
+
+    public Team getAwayTeam() {
+        return awayTeam;
     }
 
     public Date getStart() {
@@ -73,8 +79,12 @@ public class Match {
         this.note = note;
     }
 
-    public void setTeams(List<Team> teams) {
-        this.teams = teams;
+    public void setHomeTeam(Team homeTeam) {
+        this.homeTeam = homeTeam;
+    }
+
+    public void setAwayTeam(Team awayTeam) {
+        this.awayTeam = awayTeam;
     }
 
     public void setStart(Date start) {
@@ -85,7 +95,8 @@ public class Match {
     public void update(Match match) {
         this.header = match.getHeader();
         this.note = match.getNote();
-        this.teams = match.getTeams();
+        this.homeTeam = match.getHomeTeam();
+        this.awayTeam = match.getAwayTeam();
         this.start = match.getStart();
     }
 }

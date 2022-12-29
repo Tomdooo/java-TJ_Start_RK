@@ -10,10 +10,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 @EnableConfigurationProperties(RsaKeyProperties.class)
 @SpringBootApplication
@@ -62,11 +60,8 @@ public class DBInit {
             //Matches
             Match match1 = new Match();
 
-            List<Team> teamsArray = new ArrayList<>();
-            teamsArray.add(team1);
-            teamsArray.add(team2);
-
-            match1.setTeams(teamsArray);
+            match1.setHomeTeam(team1);
+            match1.setAwayTeam(team2);
             match1.setHeader("aaaaaaaaaaa");
             match1.setNote("bbbbbbbbb");
             match1.setStart(new Date());

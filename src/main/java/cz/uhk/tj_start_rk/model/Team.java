@@ -1,7 +1,5 @@
 package cz.uhk.tj_start_rk.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import cz.uhk.tj_start_rk.model.json_view.View;
 
@@ -24,15 +22,19 @@ public class Team {
     @JsonView(View.AllTeam.class)
     private List<Member> members;
 
-    @ManyToMany(mappedBy="teams", cascade = CascadeType.DETACH)
+    @OneToMany(mappedBy = "homeTeam", cascade = CascadeType.DETACH)
     @JsonView(View.AllTeam.class)
-    private List<Match> matches;
+    private List<Match> homeMatches;
+
+    @OneToMany(mappedBy = "awayTeam", cascade = CascadeType.DETACH)
+    @JsonView(View.AllTeam.class)
+    private List<Match> awayMatches;
 
     // CONSTRUCTORS
     public Team(String name, List<Member> members) {
         this.name = name;
         this.members = members;
-    }   //TODO Nevim zda potřebujeme construktor s List<Member>
+    }
 
     public Team(String name) {
         this.name = name;
@@ -54,8 +56,12 @@ public class Team {
         return members;
     }
 
-    public List<Match> getMatches() {
-        return matches;
+    public List<Match> getHomeMatches() {
+        return homeMatches;
+    }
+
+    public List<Match> getAwayMatches() {
+        return awayMatches;
     }
 
     // SETTERS
@@ -67,14 +73,19 @@ public class Team {
         this.members = members;
     }
 
-    public void setMatches(List<Match> matches) {
-        this.matches = matches;
+    public void setHomeMatches(List<Match> homeMatches) {
+        this.homeMatches = homeMatches;
+    }
+
+    public void setAwayMatches(List<Match> awayMatches) {
+        this.awayMatches = awayMatches;
     }
 
     // UPDATE
     public void update(Team team) {
         this.name = team.getName();
         this.members = team.getMembers();
-        this.matches = team.getMatches();
+        this.homeMatches = team.getHomeMatches();
+        this.awayMatches = team.getAwayMatches();
     }
 }
