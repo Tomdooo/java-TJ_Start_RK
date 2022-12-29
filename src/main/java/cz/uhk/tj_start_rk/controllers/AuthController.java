@@ -8,6 +8,7 @@ import cz.uhk.tj_start_rk.service.TokenService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -79,5 +80,24 @@ public class AuthController {
         }
 
         return null;
+    }
+
+
+    @DeleteMapping("/cookies")
+    public void clearCookies(HttpServletResponse response) {
+        Cookie httpOnlyCookie = new Cookie("jwt", "token");
+        httpOnlyCookie.setMaxAge(0);
+        httpOnlyCookie.setHttpOnly(true);
+        httpOnlyCookie.setDomain(cookieDomain);
+        httpOnlyCookie.setPath("/");
+        response.addCookie(httpOnlyCookie);
+
+        // cookie
+        Cookie cookie = new Cookie("jwt_payload", "token");
+        cookie.setMaxAge(0);
+        cookie.setHttpOnly(false);
+        cookie.setDomain(cookieDomain);
+        httpOnlyCookie.setPath("/");
+        response.addCookie(cookie);
     }
 }

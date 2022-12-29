@@ -58,9 +58,10 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeRequests(
                         auth -> auth
-                                    .regexMatchers("/token").permitAll()
-                                    .mvcMatchers("/token").permitAll()
+//                                    .regexMatchers("/token").permitAll()
+//                                    .mvcMatchers("/token").permitAll()
                                     .antMatchers("/token").permitAll()
+                                    .antMatchers("/cookies").permitAll()
                                     .anyRequest().authenticated()
 
                 )
