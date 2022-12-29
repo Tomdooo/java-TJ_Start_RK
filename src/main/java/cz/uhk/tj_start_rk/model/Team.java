@@ -30,6 +30,10 @@ public class Team {
     @JsonView(View.AllTeam.class)
     private List<Match> awayMatches;
 
+    @OneToMany(mappedBy = "team", cascade = CascadeType.DETACH, orphanRemoval = true)
+    @JsonView(View.AllTeam.class)
+    private List<Training> trainings;
+
     @PreRemove
     private void preRemove(){
         for (Member m : members){
@@ -77,6 +81,10 @@ public class Team {
         return awayMatches;
     }
 
+    public List<Training> getTrainings() {
+        return trainings;
+    }
+
     // SETTERS
     public void setName(String name) {
         this.name = name;
@@ -94,11 +102,16 @@ public class Team {
         this.awayMatches = awayMatches;
     }
 
+    public void setTrainings(List<Training> trainings) {
+        this.trainings = trainings;
+    }
+
     // UPDATE
     public void update(Team team) {
         this.name = team.getName();
         this.members = team.getMembers();
         this.homeMatches = team.getHomeMatches();
         this.awayMatches = team.getAwayMatches();
+        this.trainings = team.getTrainings();
     }
 }
