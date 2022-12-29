@@ -29,7 +29,7 @@ public class Match {
     private Team homeTeam;
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JsonView(View.AllMember.class)
+    @JsonView(View.AllMatch.class)
     private Team awayTeam;
 
     // CONSTRUCTORS
