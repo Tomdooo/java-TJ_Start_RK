@@ -60,6 +60,7 @@ public class DBInit {
             //Matches
             Match match1 = new Match();
 
+            match1.setLeague("2. liga");
             match1.setHomeTeam(team1);
             match1.setAwayTeam(team2);
             match1.setHeader("aaaaaaaaaaa");
