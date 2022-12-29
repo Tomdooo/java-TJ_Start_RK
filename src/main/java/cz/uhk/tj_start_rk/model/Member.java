@@ -37,13 +37,20 @@ public class Member {
     @JsonView(View.AllMember.class)
     private Team team;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.DETACH)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.DETACH, orphanRemoval = true)
     @JsonView(View.AllMember.class)
     private List<Training> trainings = new ArrayList<>();
 
     @OneToMany(mappedBy = "ministration", cascade = CascadeType.DETACH)
     @JsonView(View.AllMember.class)
     private List<Event> events = new ArrayList<>();
+
+    @PreRemove
+    private void preRemove(){
+        for (Event e : events){
+            e.setMinistration(null);
+        }
+    }
 
     //CONSTRUCTOR
     public Member(String role, String firstName, String lastName, String username, String password) {

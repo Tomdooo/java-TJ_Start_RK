@@ -30,6 +30,19 @@ public class Team {
     @JsonView(View.AllTeam.class)
     private List<Match> awayMatches;
 
+    @PreRemove
+    private void preRemove(){
+        for (Member m : members){
+         m.setTeam(null);
+        }
+        for (Match m:homeMatches){
+            m.setHomeTeam(null);
+        }
+        for (Match m:awayMatches){
+            m.setAwayTeam(null);
+        }
+    }
+
     // CONSTRUCTORS
     public Team(String name, List<Member> members) {
         this.name = name;
