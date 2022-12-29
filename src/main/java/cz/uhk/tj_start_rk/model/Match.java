@@ -22,6 +22,10 @@ public class Match {
 
     @JsonView(View.AllMatch.class)
     @NotNull
+    private String league;
+
+    @JsonView(View.AllMatch.class)
+    @NotNull
     private Date start;
 
     @ManyToOne(cascade = CascadeType.DETACH)
@@ -33,9 +37,10 @@ public class Match {
     private Team awayTeam;
 
     // CONSTRUCTORS
-    public Match(String header, String note, Team homeTeam, Team awayTeam, Date start) {
+    public Match(String header, String note, String league, Team homeTeam, Team awayTeam, Date start) {
         this.header = header;
         this.note = note;
+        this.league = league;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.start = start;
@@ -56,6 +61,10 @@ public class Match {
 
     public String getNote() {
         return note;
+    }
+
+    public String getLeague() {
+        return league;
     }
 
     public Team getHomeTeam() {
@@ -79,6 +88,10 @@ public class Match {
         this.note = note;
     }
 
+    public void setLeague(String league) {
+        this.league = league;
+    }
+
     public void setHomeTeam(Team homeTeam) {
         this.homeTeam = homeTeam;
     }
@@ -95,6 +108,7 @@ public class Match {
     public void update(Match match) {
         this.header = match.getHeader();
         this.note = match.getNote();
+        this.league = match.getLeague();
         this.homeTeam = match.getHomeTeam();
         this.awayTeam = match.getAwayTeam();
         this.start = match.getStart();
