@@ -16,13 +16,9 @@ public class Match {
 
     @JsonView(View.AllMatch.class)
     @NotNull
-    private String header;
+    private String league;
     @JsonView(View.AllMatch.class)
     private String note;
-
-    @JsonView(View.AllMatch.class)
-    @NotNull
-    private String league;
 
     @JsonView(View.AllMatch.class)
     @NotNull
@@ -37,10 +33,9 @@ public class Match {
     private Team awayTeam;
 
     // CONSTRUCTORS
-    public Match(String header, String note, String league, Team homeTeam, Team awayTeam, Date start) {
-        this.header = header;
-        this.note = note;
+    public Match(String league, String note, Team homeTeam, Team awayTeam, Date start) {
         this.league = league;
+        this.note = note;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.start = start;
@@ -53,10 +48,6 @@ public class Match {
     // GETTERS
     public int getId() {
         return id;
-    }
-
-    public String getHeader() {
-        return header;
     }
 
     public String getNote() {
@@ -80,10 +71,6 @@ public class Match {
     }
 
     // SETTERS
-    public void setHeader(String header) {
-        this.header = header;
-    }
-
     public void setNote(String note) {
         this.note = note;
     }
@@ -106,7 +93,6 @@ public class Match {
 
     // UPDATE
     public void update(Match match) {
-        this.header = match.getHeader();
         this.note = match.getNote();
         this.league = match.getLeague();
         this.homeTeam = match.getHomeTeam();

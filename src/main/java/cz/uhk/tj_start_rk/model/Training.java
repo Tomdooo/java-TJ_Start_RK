@@ -36,6 +36,7 @@ public class Training {
     private int track;
 
     @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "member_id")
     @JsonView(View.AllTraining.class)
     private Member member;
 
@@ -43,7 +44,6 @@ public class Training {
     @JsonView(View.AllTraining.class)
     private Team team;
 
-    //Todo Timestamp and Header?
 
     // CONSTRUCTORS
     public Training(Date start, Date end, String header, String note, int track, Member member) {

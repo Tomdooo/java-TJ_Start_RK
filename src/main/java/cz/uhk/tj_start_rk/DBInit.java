@@ -18,7 +18,7 @@ import java.util.Date;
 public class DBInit {
 
     public static void main(String[] args) {
-        SpringApplication.run(TjStartRkApplication.class, args);
+        SpringApplication.run(DBInit.class, args);
     }
 
 
@@ -63,7 +63,6 @@ public class DBInit {
             match1.setLeague("2. liga");
             match1.setHomeTeam(team1);
             match1.setAwayTeam(team2);
-            match1.setHeader("aaaaaaaaaaa");
             match1.setNote("bbbbbbbbb");
             match1.setStart(new Date());
 

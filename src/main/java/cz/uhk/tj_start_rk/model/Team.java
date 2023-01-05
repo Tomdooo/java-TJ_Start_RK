@@ -36,18 +36,22 @@ public class Team {
 
     @PreRemove
     private void preRemove(){
-        for (Member m : members){
-         m.setTeam(null);
-        }
-        for (Match m:homeMatches){
-            m.setHomeTeam(null);
-        }
-        for (Match m:awayMatches){
-            m.setAwayTeam(null);
-        }
-        for (Training t: trainings){
-            t.setTeam(null);
-        }
+        if (members != null)
+            for (Member m : members){
+                m.setTeam(null);
+            }
+        if (homeMatches != null)
+            for (Match m : homeMatches){
+                m.setHomeTeam(null);
+            }
+        if (awayMatches != null)
+            for (Match m : awayMatches){
+                m.setAwayTeam(null);
+            }
+        if (trainings != null)
+            for (Training t : trainings){
+                t.setTeam(null);
+            }
     }
 
     // CONSTRUCTORS

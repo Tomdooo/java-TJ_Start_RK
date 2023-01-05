@@ -3,6 +3,7 @@ package cz.uhk.tj_start_rk.controllers;
 import com.fasterxml.jackson.annotation.JsonView;
 import cz.uhk.tj_start_rk.model.Member;
 import cz.uhk.tj_start_rk.model.json_view.View;
+import cz.uhk.tj_start_rk.model.security.SimpleIdPassword;
 import cz.uhk.tj_start_rk.repositories.MemberRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,7 +23,6 @@ public class MemberController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    //    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @JsonView(View.AllMember.class)
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @GetMapping("/members")
@@ -32,7 +32,6 @@ public class MemberController {
         return members;
     }
 
-    //    @Secured("ROLE_USER")
     @JsonView(View.AllMember.class)
     @GetMapping("/members/{id}")
     public Optional<Member> getMemberById(@PathVariable int id){
@@ -47,7 +46,6 @@ public class MemberController {
         return memberRepository.save(member);
     }
 
-//    @RolesAllowed("ROLE_USER")
     @JsonView(View.AllMember.class)
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PutMapping("/members")
@@ -59,7 +57,16 @@ public class MemberController {
         return memberRepository.save(update);
     }
 
-    // TODO update hesla
+    @JsonView(View.AllMember.class)
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PutMapping("/members/password")
+    public Member updateMemberPassword(@RequestBody SimpleIdPassword simpleIdPassword) {
+        Member update = memberRepository.getReferenceById(simpleIdPassword.getId());
+
+        update.setPassword(passwordEncoder.encode(simpleIdPassword.getPassword()));
+
+        return memberRepository.save(update);
+    }
 
     @JsonView(View.AllMember.class)
     @PreAuthorize("hasAnyAuthority('ADMIN')")

@@ -39,7 +39,7 @@ public class AuthController {
 
         Cookie jwt = null;
 
-        if (cookies != null) {  // if cookies exists find 'jwt' cookie
+        if (cookies != null) {  // if cookies exists, find 'jwt' cookie
             for (int i = 0; i < cookies.length-1; i++) {
                 if (cookies[i].getName().equals("jwt")) {
                     jwt = cookies[i];

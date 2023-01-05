@@ -27,7 +27,6 @@ public class Member {
 
     @JsonView(View.BasicMember.class)
     @Column(unique=true, nullable = false, length = 64)
-//    @NotNull
     private String username;
     @JsonView(View.AllMemberWithPassword.class)
     @NotNull
@@ -47,12 +46,14 @@ public class Member {
 
     @PreRemove
     private void preRemove(){
-        for (Event e : events){
-            e.setMinistration(null);
-        }
-        for (Training t : trainings){
-            t.setMember(null);
-        }
+        if (events != null)
+            for (Event e : events){
+                e.setMinistration(null);
+            }
+        if (trainings != null)
+            for (Training t : trainings){
+                t.setMember(null);
+            }
     }
 
     //CONSTRUCTOR

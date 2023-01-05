@@ -1,65 +1,128 @@
 package cz.uhk.tj_start_rk;
 
 import cz.uhk.tj_start_rk.model.*;
+import cz.uhk.tj_start_rk.repositories.*;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 class TjStartRkApplicationTests {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private MemberRepository memberRepository;
+    @Autowired
+    private TeamRepository teamRepository;
+    @Autowired
+    private EventRepository eventRepository;
+    @Autowired
+    private MatchRepository matchRepository;
+    @Autowired
+    private TrainingRepository trainingRepository;
+
+
+//    @Test
+//    void contextLoads() {
+//
+//    }
 
     @Test
-    void contextLoads(PasswordEncoder passwordEncoder) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("tj_start");
-        EntityManager em =emf.createEntityManager();
-        em.getTransaction().begin();
+    public void testDbMember() {
+        // create
+        Member member = new Member("USER", "Alfonz", "Mucha", "alfmu", passwordEncoder.encode("Password123@"));
+        Member dbMember = memberRepository.save(member);
 
-        //Add teams
-        Team team1 = new Team("aaaa");
-        em.persist(team1);
-        Team team2 = new Team("bbbb");
-        em.persist(team2);
+        // get
+        Optional<Member> dbMember2 = memberRepository.findById(dbMember.getId());
+        dbMember = dbMember2.get();
 
-        //Add members
-        Member member1 = new Member("Admin","Václav", "Buřil", "vasek", passwordEncoder.encode("Password123@"),team1);
-        em.persist(member1);
-        Member member2 = new Member("Hrac","Tomáš", "Němeček", "tomas", passwordEncoder.encode("Password123@"),team2);
-        em.persist(member2);
+        // update
+        Member memberUpdate = new Member("USER", "Alfonzík", "Mušík", "alfmu2", null);
+        dbMember.update(memberUpdate);
+        memberRepository.save(dbMember);
 
-        //Add events
-        Event event1 = new Event("Turnaj","aaaa",new Date(2022, Calendar.DECEMBER,10,15, 0),new Date(2022, Calendar.DECEMBER,10,15, 45),member1);
-        em.persist(event1);
-        Event event2 = new Event("Turnaj","aaaa",new Date(2023, Calendar.JANUARY,10,15, 0),new Date(2023, Calendar.JANUARY,10,15, 45),member2);
-        em.persist(event2);
-
-        //Add trainings
-        Training training1 = new Training(new Date(2023, Calendar.JANUARY,10,15, 0),  new Date(2023, Calendar.JANUARY,10,15, 45),"1.","",1,member1);
-        em.persist(training1);
-        Training training2 = new Training(new Date(2023, Calendar.JANUARY,11,15, 0),  new Date(2023, Calendar.JANUARY,11,15, 45),"2.","",2,team1);
-
-        em.persist(training2);
-
-        //Matches
-        Match match1 = new Match();
-
-        match1.setLeague("2. liga");
-        match1.setHomeTeam(team1);
-        match1.setAwayTeam(team2);
-        match1.setHeader("aaaaaaaaaaa");
-        match1.setNote("bbbbbbbbb");
-        match1.setStart(new Date());
-
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
+        // delete
+        memberRepository.delete(dbMember);
     }
 
+    @Test
+    public void testDbTeam() {
+        // create
+        Team team = new Team("Turnajáci");
+        Team dbTeam = teamRepository.save(team);
+
+        // get
+        Optional<Team> dbTeam2 = teamRepository.findById(dbTeam.getId());
+        dbTeam = dbTeam2.get();
+
+        // update
+        Team teamUpdate = new Team("Zápasníci");
+        dbTeam.update(teamUpdate);
+        teamRepository.save(dbTeam);
+
+        // delete
+        teamRepository.delete(dbTeam);
+    }
+
+    @Test
+    public void testDbEvent() {
+        // create
+        Event event = new Event("Turnaj", null, new Date(), new Date(), null);
+        Event dbEvent = eventRepository.save(event);
+
+        // get
+        Optional<Event> dbEvent2 = eventRepository.findById(dbEvent.getId());
+        dbEvent = dbEvent2.get();
+
+        // update
+        Event eventUpdate = new Event("Zápas", "Poznámka", new Date(), new Date(), null);
+        dbEvent.update(eventUpdate);
+        eventRepository.save(dbEvent);
+
+        // delete
+        eventRepository.delete(dbEvent);
+    }
+
+    @Test
+    public void testDbMatch() {
+        // create
+        Match match = new Match("Domácí liga", null, null, null, new Date());
+        Match dbMatch = matchRepository.save(match);
+
+        // get
+        Optional<Match> dbMatch2 = matchRepository.findById(dbMatch.getId());
+        dbMatch = dbMatch2.get();
+
+        // update
+        Match matchUpdate = new Match("Veřejná liga", "Doma", null, null, new Date());
+        dbMatch.update(matchUpdate);
+        matchRepository.save(dbMatch);
+
+        // delete
+        matchRepository.delete(dbMatch);
+    }
+
+    @Test
+    public void testDbTraining() {
+        // create
+        Training training = new Training(new Date(), new Date(), "Domácí liga", null, 3, (Member) null);
+        Training dbTraining = trainingRepository.save(training);
+
+        // get
+        Optional<Training> dbTraining2 = trainingRepository.findById(dbTraining.getId());
+        dbTraining = dbTraining2.get();
+
+        // update
+        Training trainingUpdate = new Training(new Date(), new Date(), "trénink", "poznámka", 2, (Team) null);
+        dbTraining.update(trainingUpdate);
+        trainingRepository.save(dbTraining);
+
+        // delete
+        trainingRepository.delete(dbTraining);
+    }
 }
