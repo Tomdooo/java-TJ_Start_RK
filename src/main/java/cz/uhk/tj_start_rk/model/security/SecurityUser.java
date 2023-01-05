@@ -1,4 +1,4 @@
-package cz.uhk.tj_start_rk.model.json_view;
+package cz.uhk.tj_start_rk.model.security;
 
 import cz.uhk.tj_start_rk.model.Member;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,12 +18,6 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-//        System.out.println(Arrays.stream(member.getRole().split(","))
-//                .map(SimpleGrantedAuthority::new)
-//                .toList());
-//        return Arrays.stream(member.getRole().split(","))
-//                     .map(SimpleGrantedAuthority::new)
-//                     .toList();
         return Collections.singleton(new SimpleGrantedAuthority(member.getRole()));
     }
 

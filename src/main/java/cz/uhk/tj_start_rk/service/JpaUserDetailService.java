@@ -1,7 +1,7 @@
 package cz.uhk.tj_start_rk.service;
 
 import cz.uhk.tj_start_rk.model.Member;
-import cz.uhk.tj_start_rk.model.json_view.SecurityUser;
+import cz.uhk.tj_start_rk.model.security.SecurityUser;
 import cz.uhk.tj_start_rk.repositories.MemberRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

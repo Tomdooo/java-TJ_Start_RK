@@ -1,6 +1,7 @@
 package cz.uhk.tj_start_rk.service;
 
 import cz.uhk.tj_start_rk.model.Member;
+import cz.uhk.tj_start_rk.model.Team;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
@@ -22,10 +23,12 @@ public class TokenService {
 
     public String generateToken(Authentication authentication, Member member) {
         Instant now = Instant.now();
+
         String scope = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(" "));
-        JwtClaimsSet claims = JwtClaimsSet.builder()
+
+        JwtClaimsSet.Builder builder = JwtClaimsSet.builder()
                 .claim("id", member.getId())
                 .claim("username", member.getUsername())
                 .claim("firstName", member.getFirstName())
@@ -34,8 +37,15 @@ public class TokenService {
                 .issuedAt(now)
                 .expiresAt(now.plus(24, ChronoUnit.HOURS))
                 .subject(authentication.getName())
-                .claim("scope", scope)
-                .build();
+                .claim("scope", scope);
+
+        Team team = member.getTeam();
+        if (team != null) {
+            builder.claim("teamId", team.getId());
+            builder.claim("teamName", team.getName());
+        }
+
+        JwtClaimsSet claims = builder.build();
         return this.encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
     }
 }
