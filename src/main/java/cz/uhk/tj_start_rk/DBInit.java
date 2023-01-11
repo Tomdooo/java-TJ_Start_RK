@@ -30,7 +30,8 @@ public class DBInit {
                                         TeamRepository teams,
                                         TrainingRepository trainings) {
         return args -> {
-//            if (members.findByUsername("tomas").isPresent()) return;
+            if (members.findByUsername("vasek").isPresent()) return;
+
             System.out.println("\n...Naplňujeme očekávání...\n");
 
             //Add teams
