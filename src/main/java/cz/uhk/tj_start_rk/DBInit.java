@@ -30,12 +30,13 @@
 //                                        TeamRepository teams,
 //                                        TrainingRepository trainings) {
 //        return args -> {
-//            if (members.findByUsername("tomas").isPresent()) return;
+////            if (members.findByUsername("tomas").isPresent()) return;
+//            System.out.println("\n...Naplňujeme očekávání...\n");
 //
 //            //Add teams
-//            Team team1 = new Team("aaaa");
+//            Team team1 = new Team("skupina A");
 //            teams.save(team1);
-//            Team team2 = new Team("bbbb");
+//            Team team2 = new Team("Brtníci");
 //            teams.save(team2);
 //
 //            //Add members
@@ -45,9 +46,9 @@
 //            members.save(member2);
 //
 //            //Add events
-//            Event event1 = new Event("Turnaj","aaaa",new Date(2022, Calendar.DECEMBER,10,15, 0),new Date(2022, Calendar.DECEMBER,10,15, 45),member1);
+//            Event event1 = new Event("Turnaj","",new Date(2023, Calendar.JANUARY,18,15, 0),new Date(2022, Calendar.JANUARY,18,15, 45),member1);
 //            events.save(event1);
-//            Event event2 = new Event("Turnaj","aaaa",new Date(2023, Calendar.JANUARY,10,15, 0),new Date(2023, Calendar.JANUARY,10,15, 45),member2);
+//            Event event2 = new Event("Turnaj","Doma",new Date(2023, Calendar.JANUARY,10,15, 0),new Date(2023, Calendar.JANUARY,10,15, 45),member2);
 //            events.save(event2);
 //
 //            //Add trainings
@@ -63,7 +64,7 @@
 //            match1.setLeague("2. liga");
 //            match1.setHomeTeam(team1);
 //            match1.setAwayTeam(team2);
-//            match1.setNote("bbbbbbbbb");
+//            match1.setNote("");
 //            match1.setStart(new Date());
 //
 //            matches.save(match1);
