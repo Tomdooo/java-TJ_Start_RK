@@ -47,15 +47,15 @@ public class DBInit {
             members.save(member2);
 
             //Add events
-            Event event1 = new Event("Turnaj","",new Date(2023, Calendar.JANUARY,18,15, 0),new Date(2022, Calendar.JANUARY,18,15, 45),member1);
+            Event event1 = new Event("Turnaj","",new Date(123, Calendar.JANUARY,18,15, 0),new Date(123, Calendar.JANUARY,18,15, 45),member1);
             events.save(event1);
-            Event event2 = new Event("Turnaj","Doma",new Date(2023, Calendar.JANUARY,10,15, 0),new Date(2023, Calendar.JANUARY,10,15, 45),member2);
+            Event event2 = new Event("Turnaj","Doma",new Date(123, Calendar.JANUARY,10,15, 0),new Date(123, Calendar.JANUARY,10,15, 45),member2);
             events.save(event2);
 
             //Add trainings
-            Training training1 = new Training(new Date(2023, Calendar.JANUARY,10,15, 0),  new Date(2023, Calendar.JANUARY,10,15, 45),"1.","",1,member1);
+            Training training1 = new Training(new Date(123, Calendar.JANUARY,10,15, 0),  new Date(123, Calendar.JANUARY,10,15, 45),"1.","",1,member1);
             trainings.save(training1);
-            Training training2 = new Training(new Date(2023, Calendar.JANUARY,11,15, 0),  new Date(2023, Calendar.JANUARY,11,15, 45),"2.","",2,team1);
+            Training training2 = new Training(new Date(123, Calendar.JANUARY,11,15, 0),  new Date(123, Calendar.JANUARY,11,15, 45),"2.","",2,team1);
 
             trainings.save(training2);
 

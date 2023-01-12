@@ -1,33 +1,29 @@
-package cz.uhk.tj_start_rk;
-
-import cz.uhk.tj_start_rk.model.*;
-import cz.uhk.tj_start_rk.repositories.*;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.Date;
-import java.util.Optional;
-
-@SpringBootTest
-class TjStartRkApplicationTests {
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    private MemberRepository memberRepository;
-    @Autowired
-    private TeamRepository teamRepository;
-    @Autowired
-    private EventRepository eventRepository;
-    @Autowired
-    private MatchRepository matchRepository;
-    @Autowired
-    private TrainingRepository trainingRepository;
-
-
-//    @Test
-//    void contextLoads() {}
+//package cz.uhk.tj_start_rk;
+//
+//import cz.uhk.tj_start_rk.model.*;
+//import cz.uhk.tj_start_rk.repositories.*;
+//import org.junit.jupiter.api.Test;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+//
+//import java.util.Date;
+//import java.util.Optional;
+//
+//@DataJpaTest
+//public class DataJpaTests {
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
+//    @Autowired
+//    private MemberRepository memberRepository;
+//    @Autowired
+//    private TeamRepository teamRepository;
+//    @Autowired
+//    private EventRepository eventRepository;
+//    @Autowired
+//    private MatchRepository matchRepository;
+//    @Autowired
+//    private TrainingRepository trainingRepository;
 //
 //    @Test
 //    public void testDbMember() {
@@ -123,4 +119,4 @@ class TjStartRkApplicationTests {
 //        // delete
 //        trainingRepository.delete(dbTraining);
 //    }
-}
+//}
