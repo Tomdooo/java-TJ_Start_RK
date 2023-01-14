@@ -12,22 +12,20 @@ import java.util.Optional;
 
 @SpringBootTest
 class TjStartRkApplicationTests {
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    private MemberRepository memberRepository;
-    @Autowired
-    private TeamRepository teamRepository;
-    @Autowired
-    private EventRepository eventRepository;
-    @Autowired
-    private MatchRepository matchRepository;
-    @Autowired
-    private TrainingRepository trainingRepository;
-
-
-//    @Test
-//    void contextLoads() {}
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
+//    @Autowired
+//    private MemberRepository memberRepository;
+//    @Autowired
+//    private TeamRepository teamRepository;
+//    @Autowired
+//    private EventRepository eventRepository;
+//    @Autowired
+//    private MatchRepository matchRepository;
+//    @Autowired
+//    private TrainingRepository trainingRepository;
+//
+//
 //
 //    @Test
 //    public void testDbMember() {

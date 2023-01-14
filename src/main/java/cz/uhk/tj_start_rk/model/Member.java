@@ -154,7 +154,7 @@ public class Member {
     public void update(Member member) {
         this.role = member.getRole();
         this.firstName = member.getFirstName();
-        this.lastName = member.getLastName();   // TODO password?
+        this.lastName = member.getLastName();
         this.username = member.getUsername();
         this.trainings = member.getTrainings();
         this.events = member.getEvents();
